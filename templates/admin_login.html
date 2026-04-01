@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarpanch Login - Secured</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+    
+    <div class="absolute top-[0%] left-[10%] w-[500px] h-[500px] bg-amber-500 opacity-[0.05] rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-indigo-500 opacity-[0.05] rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="bg-slate-800/80 backdrop-blur-2xl p-8 sm:p-10 rounded-3xl shadow-2xl shadow-black/50 w-full max-w-md border border-slate-700 relative z-10 border-t-4 border-t-amber-500">
+        
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-slate-900 text-amber-500 mb-4 shadow-inner border border-slate-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+            </div>
+            <h2 class="text-3xl font-extrabold text-white tracking-tight">Admin Portal</h2>
+            <p class="text-sm text-slate-400 font-medium mt-2">Restricted Access • Authorized Personnel Only</p>
+        </div>
+
+        <form action="/admin" method="POST" class="space-y-5">
+            <div>
+                <label class="block text-sm font-bold text-slate-300 mb-1.5 pl-1">Admin Username</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <input type="text" name="username" required placeholder="Enter admin ID" class="w-full pl-11 pr-4 py-3.5 rounded-xl border border-slate-600 bg-slate-900/50 text-white placeholder-slate-500 focus:bg-slate-900 focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 outline-none transition-all duration-300 font-medium">
+                </div>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-bold text-slate-300 mb-1.5 pl-1">Secret Password</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                    </div>
+                    <input type="password" name="password" required placeholder="••••••••" class="w-full pl-11 pr-4 py-3.5 rounded-xl border border-slate-600 bg-slate-900/50 text-white placeholder-slate-500 focus:bg-slate-900 focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 outline-none transition-all duration-300 font-medium">
+                </div>
+            </div>
+            
+            <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-slate-900 py-3.5 rounded-xl font-extrabold text-base shadow-lg shadow-amber-500/20 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2 mt-2">
+                Authenticate
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+            </button>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-slate-700 text-center">
+            <a href="/login" class="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white font-medium transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                Return to Public Portal
+            </a>
+        </div>
+
+    </div>
+</body>
+</html>
