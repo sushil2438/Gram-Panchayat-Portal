@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ग्राम सेवा - Village Grievance Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }</style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <nav class="bg-white shadow-sm border-b border-slate-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md">V</div>
+                    <div>
+                        <h1 class="font-extrabold text-2xl text-slate-800 tracking-tight">ग्राम सेवा</h1>
+                        <p class="text-[10px] text-slate-500 font-semibold uppercase tracking-widest">Village Portal</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-emerald-600 font-semibold">Home</a>
+                    <a href="#how-it-works" class="text-slate-500 hover:text-emerald-600 font-medium">How it Works</a>
+                    <a href="/login" class="text-slate-500 hover:text-emerald-600 font-medium">Login</a>
+                    <a href="/register" class="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-2.5 rounded-lg font-bold shadow-md transform hover:-translate-y-0.5">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="relative bg-slate-900 h-[600px] flex items-center justify-center text-center">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover opacity-40" alt="Village Background">
+        </div>
+        <div class="relative z-10 px-4 max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-lg">Welcome to <span class="text-emerald-400">ग्राम सेवा</span></h1>
+            <p class="text-lg md:text-xl text-slate-200 mb-10 font-medium max-w-2xl mx-auto leading-relaxed drop-shadow-md">Your voice matters. Report local issues, track progress, and help build a better, digitally connected village community.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/register" class="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl transform hover:-translate-y-1">Register Now</a>
+                <a href="#how-it-works" class="bg-white/10 backdrop-blur-md border-2 border-white text-white hover:bg-white hover:text-slate-900 px-8 py-4 rounded-xl font-bold text-lg transform hover:-translate-y-1">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="how-it-works" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-extrabold text-slate-800 mb-4">How It Works</h2>
+            <p class="text-slate-500 font-medium mb-16 text-lg">Simple steps to raise and resolve your concerns</p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 hover:-translate-y-2 transition duration-300">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">👤</div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">1. Register</h3>
+                    <p class="text-slate-500 text-sm">Create your personal account using your mobile number.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 hover:-translate-y-2 transition duration-300">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">📝</div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">2. Submit</h3>
+                    <p class="text-slate-500 text-sm">Report issues about electricity, water, or broken roads easily.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 hover:-translate-y-2 transition duration-300">
+                    <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">🔍</div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">3. Track</h3>
+                    <p class="text-slate-500 text-sm">Monitor the live status of your complaints on your dashboard.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 hover:-translate-y-2 transition duration-300">
+                    <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">✅</div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-3">4. Resolve</h3>
+                    <p class="text-slate-500 text-sm">Get your issues resolved by the Sarpanch and authorities.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-slate-950 pt-16 pb-8 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-white mb-4 flex items-center gap-2"><span class="text-emerald-500">V</span> ग्राम सेवा</h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">Empowering village communities through digital governance. Submit and track grievances efficiently.</p>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="/login" class="text-slate-400 hover:text-emerald-400">Villager Login</a></li>
+                        <li><a href="/admin" class="text-amber-500 hover:text-amber-400 font-semibold flex items-center gap-2"><span>🔒</span> Sarpanch / Admin Login</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold text-lg mb-4">Contact Us</h3>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li>📍 Village Panchayat Office, Bihar</li>
+                        <li>📞 +91 1800-XXX-XXXX</li>
+                        <li>✉️ support@gramseva.gov.in</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 text-center"><p class="text-slate-500 text-sm">© 2026 ग्राम सेवा Portal. All rights reserved.</p></div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -3,7 +3,6 @@ import sqlite3
 conn = sqlite3.connect('database.db')
 cursor = conn.cursor()
 
-# Users Table (No changes)
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -13,13 +12,14 @@ cursor.execute('''
     )
 ''')
 
-# Complaints Table (ADVANCED: Added sarpanch_reply and created_at)
+# NAYA COLUMN ADD KIYA HAI: image_file
 cursor.execute('''
     CREATE TABLE IF NOT EXISTS complaints (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER NOT NULL,
         issue_category TEXT NOT NULL,
         description TEXT NOT NULL,
+        image_file TEXT DEFAULT NULL, 
         status TEXT DEFAULT 'Pending',
         sarpanch_reply TEXT DEFAULT '',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -27,6 +27,6 @@ cursor.execute('''
     )
 ''')
 
-print("Advanced Database created successfully!")
+print("Database with Image Support created successfully!")
 conn.commit()
 conn.close()

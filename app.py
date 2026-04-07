@@ -1,21 +1,25 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
 from datetime import datetime
+import os
+from werkzeug.utils import secure_filename # File ka naam safe karne ke liye
 
 app = Flask(__name__)
 app.secret_key = 'super_secret_key_for_session'
+
+# Upload Folder Setup
+UPLOAD_FOLDER = 'static/uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+os.makedirs(UPLOAD_FOLDER, exist_ok=True) # Agar folder nahi hai toh khud bana dega
 
 def get_db_connection():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
     return conn
 
-# --- VILLAGER SECTION ---
 @app.route('/')
 def home():
-    if 'user_id' in session:
-        return redirect(url_for('index'))
-    return redirect(url_for('login'))
+    return render_template('landing.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -52,7 +56,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('login'))
+    return redirect(url_for('home'))
 
 @app.route('/index', methods=['GET', 'POST'])
 def index():
@@ -63,13 +67,23 @@ def index():
     if request.method == 'POST':
         category = request.form['issue_category']
         description = request.form['description']
-        conn.execute('INSERT INTO complaints (user_id, issue_category, description) VALUES (?, ?, ?)',
-                     (session['user_id'], category, description))
+        
+        # --- NAYA IMAGE UPLOAD LOGIC ---
+        filename = None
+        if 'photo' in request.files:
+            file = request.files['photo']
+            if file.filename != '':
+                # Photo ka naam safe karo aur time add karo taki duplicate na ho
+                filename = secure_filename(f"{datetime.now().strftime('%Y%m%d%H%M%S')}_{file.filename}")
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # --------------------------------
+
+        conn.execute('INSERT INTO complaints (user_id, issue_category, description, image_file) VALUES (?, ?, ?, ?)',
+                     (session['user_id'], category, description, filename))
         conn.commit()
 
-    # Fetching with Date formatting
     my_complaints = conn.execute('''
-        SELECT id, issue_category, description, status, sarpanch_reply, 
+        SELECT id, issue_category, description, image_file, status, sarpanch_reply, 
         datetime(created_at, 'localtime') as date 
         FROM complaints WHERE user_id = ? ORDER BY id DESC
     ''', (session['user_id'],)).fetchall()
@@ -78,7 +92,6 @@ def index():
     return render_template('index.html', name=session['user_name'], complaints=my_complaints)
 
 
-# --- ADMIN (SARPANCH) SECTION ---
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
@@ -94,13 +107,12 @@ def admin_dashboard():
     if not session.get('is_admin'):
         return redirect(url_for('admin_login'))
 
-    # Advanced: URL filter check karega (?status=Pending)
     filter_status = request.args.get('status', 'All')
     conn = get_db_connection()
     
     query = '''
         SELECT complaints.id, users.name, users.phone, complaints.issue_category, 
-               complaints.description, complaints.status, complaints.sarpanch_reply,
+               complaints.description, complaints.image_file, complaints.status, complaints.sarpanch_reply,
                datetime(complaints.created_at, 'localtime') as date
         FROM complaints
         JOIN users ON complaints.user_id = users.id
@@ -114,7 +126,6 @@ def admin_dashboard():
 
     return render_template('admin_dashboard.html', complaints=complaints, current_filter=filter_status)
 
-# Advanced: Ab sirf resolve nahi, reply bhi save hoga
 @app.route('/update_complaint/<int:id>', methods=['POST'])
 def update_complaint(id):
     if not session.get('is_admin'):
